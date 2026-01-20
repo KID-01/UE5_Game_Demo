@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
 #include "Animation/AnimMontage.h"
+#include "Sound/SoundBase.h"
 
 #include "PlayerCharacter.generated.h"
 
@@ -88,7 +89,6 @@ private:
 	void CheckFallOut();
 
 
-
 public:
 	UPROPERTY(BlueprintReadOnly, Category = "Player|Ability")
 	bool bIsAbsorbing;
@@ -152,7 +152,9 @@ public:
 	// 是否正在重生（防止重复触发）
 	bool bIsRespawning = false;
 
-
+	// 角色获得新能力的音效
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Audio")
+	USoundBase* GainAbilitySound;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

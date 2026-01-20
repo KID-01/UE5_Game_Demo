@@ -320,6 +320,15 @@ void APlayerCharacter::AddNewAbility()
 	CharacterAbilityLevel = 1;
 	UpdateCharacterMaterialByAbilityLevel();
 
+	if (GainAbilitySound)
+	{
+		UGameplayStatics::PlaySound2D(
+			this,
+			GainAbilitySound,
+			1.0f
+		);
+	}
+	
 	if (CharacterAbilityLevel == 1)
 	{
 		SpawnCanOnHand();
@@ -382,6 +391,8 @@ void APlayerCharacter::SpawnCanOnHand()
 	// 微调罐头的位置和旋转，完美贴合手掌
 	HandCanMeshComp->SetRelativeLocation(FVector(0.0f, 5.0f, -5.0f));
 	HandCanMeshComp->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));
+
+
 }
 
 void APlayerCharacter::PlayAnimMontageSimple(UAnimMontage* MontageToPlay)
